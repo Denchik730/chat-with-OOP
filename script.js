@@ -1,12 +1,26 @@
+const messageList = [
+  {
+    image:
+      "https://kartinkin.net/pics/uploads/posts/2022-07/thumbs/1658430253_5-kartinkin-net-p-dovolnii-slon-zhivotnie-krasivo-foto-5.jpg",
+    text: "Привет, нам срочно требуется доработать чат!",
+  },
+  {
+    image:
+      "https://kartinkin.net/pics/uploads/posts/2022-07/thumbs/1658430253_5-kartinkin-net-p-dovolnii-slon-zhivotnie-krasivo-foto-5.jpg",
+    text: "Теперь мы можем создавать сколько угодно карточек!",
+  },
+];
+
 class Message {
-  constructor(text, image) {
-    this._text = text;
-    this._image = image;
+  constructor(data, templateSelector) {
+    this._text = data.text;
+    this._image = data.image;
+    this._templateSelector = templateSelector;
   }
 
   _getElement() {
     const messageElement = document
-      .querySelector(".message-template")
+      .querySelector(this._templateSelector)
       .content.querySelector(".message")
       .cloneNode(true);
 
@@ -23,10 +37,8 @@ class Message {
   }
 }
 
-const message = new Message(
-  "Привет! Как дела?",
-  "https://kartinkin.net/pics/uploads/posts/2022-07/thumbs/1658430253_5-kartinkin-net-p-dovolnii-slon-zhivotnie-krasivo-foto-5.jpg"
-);
-console.log(message.generate());
+messageList.forEach((item) => {
+  const message = new Message(item, ".message-template_default");
 
-document.body.append(message.generate());
+  document.body.append(message.generate());
+});
