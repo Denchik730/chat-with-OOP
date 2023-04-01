@@ -20,18 +20,18 @@ class Message {
     this._templateSelector = templateSelector;
   }
 
-  _getElement = () => {
+  _getElement() {
     const messageElement = document
       .querySelector(this._templateSelector)
       .content.querySelector(".message")
       .cloneNode(true);
 
     return messageElement;
-  };
+  }
 
-  _setEventListeners = () => {
+  _setEventListeners() {
     this._element.addEventListener("click", this._handleMessageClick);
-  };
+  }
 
   _handleMessageClick = () => {
     this._element
@@ -47,11 +47,11 @@ class UserMessage extends Message {
   }
 
   generate() {
-    this._element = this._getElement();
+    this._element = super._getElement();
 
     this._element.querySelector(".message__paragraph").textContent = this._text;
 
-    this._setEventListeners();
+    super._setEventListeners();
 
     return this._element;
   }
@@ -65,12 +65,12 @@ class DefaultMessage extends Message {
   }
 
   generate() {
-    this._element = this._getElement();
+    this._element = super._getElement();
 
     this._element.querySelector(".message__avatar").src = this._image;
     this._element.querySelector(".message__paragraph").textContent = this._text;
 
-    this._setEventListeners();
+    super._setEventListeners();
 
     return this._element;
   }
