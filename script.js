@@ -18,20 +18,32 @@ class Message {
     this._templateSelector = templateSelector;
   }
 
-  _getElement() {
+  _getElement = () => {
     const messageElement = document
       .querySelector(this._templateSelector)
       .content.querySelector(".message")
       .cloneNode(true);
 
     return messageElement;
-  }
+  };
+
+  _setEventListeners = () => {
+    this._element.addEventListener("click", this._handleMessageClick);
+  };
+
+  _handleMessageClick = () => {
+    this._element
+      .querySelector(".message__text")
+      .classList.toggle("message__text_is-active");
+  };
 
   generate() {
     this._element = this._getElement();
 
     this._element.querySelector(".message__avatar").src = this._image;
     this._element.querySelector(".message__paragraph").textContent = this._text;
+
+    this._setEventListeners();
 
     return this._element;
   }
