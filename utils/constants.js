@@ -14,3 +14,5 @@ export const messageList = [
     text: "Ответ!",
   },
 ];
+
+export const cardListSection = ".card-list";
