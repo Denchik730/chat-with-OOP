@@ -8,6 +8,7 @@
   </head>
   <body>
     <section class="card-list"></section>
+    <section class="form-section"></section>
     <template class="message-template message-template_type_user">
       <div class="message message_type_user">
         <div class="message__text">
@@ -22,6 +23,19 @@
           <p class="message__paragraph"></p>
         </div>
       </div>
+    </template>
+    <template class="form-template">
+      <form class="form">
+        <input
+          class="form__input"
+          name="text"
+          type="text"
+          required
+          minlength="1"
+          placeholder="Введите текст сообщения"
+        />
+        <button class="form__submit">Отправить</button>
+      </form>
     </template>
     <script type="module" src="./pages/index.js"></script>
   </body>
